@@ -1,0 +1,20 @@
+@import "../../../test.scss";
+
+.userLandingStyle {
+  font-size: 25px;
+  color: aliceblue;
+}
+
+.userLandingStyle {
+  display: flex;
+  margin-top: 1em;
+}
+.userMenu {
+  flex: 2;
+  margin-left: 1em;
+  margin-right: 1em;
+}
+.postSection {
+  flex: 7;
+  margin-right: 2em;
+}

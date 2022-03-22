@@ -1,0 +1,38 @@
+<div class="userLandingStyle">
+  <button mat-button (click)="changeValue()">Change Value</button>
+  <div class="userMenu">
+    <app-user-menu [value]="value"></app-user-menu>
+  </div>
+  <div class="postSection">
+    <router-outlet></router-outlet>
+    <br />
+    <div style="display: flex;justify-content: space-between;">
+      <mat-form-field appearance="fill">
+        <input matInput placeholder="Search" #searchField>
+        {{searchField.value}}
+        <button (click)="onSearch()">Search</button>
+        <button (click)="onReset()">Reset</button>
+      </mat-form-field>
+      <mat-paginator [length]="(postList$ | async)?.records" [pageSize]="limit" (page)="onPaginate($event)"
+        aria-label="Select page">
+      </mat-paginator>
+    </div>
+    <div>
+      <mat-card *ngFor="let post of postList; trackBy: trackByPostId">
+        <mat-card-title>{{ post.createdAt | dateTransform }}</mat-card-title>
+        <mat-card-subtitle>Added By {{ post.author.name }}</mat-card-subtitle>
+        <mat-card-content>
+          {{ post.post }}
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-icon-button (click)="likePost('like', post._id, post.author._id)">
+            <mat-icon>thumb_up</mat-icon>{{post.likes.length}}
+          </button>
+          <button mat-icon-button (click)="likePost('dislike', post._id, post.author._id)">
+            <mat-icon>thumb_down</mat-icon>{{post.dislikes.length}}
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+</div>

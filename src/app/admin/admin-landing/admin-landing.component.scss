@@ -1,0 +1,5 @@
+@import "../../../test.scss";
+
+body {
+  @include pageStyle(40px, "blue", Avinash);
+}

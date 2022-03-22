@@ -1,0 +1,15 @@
+@import "../../test.scss";
+
+body {
+  @include pageStyle(10px, "red", Abhishek);
+}
+
+.landing {
+  display: flex;
+}
+.details-grid {
+  flex: 4 1 0;
+}
+.login {
+  flex: 1 1 0;
+}

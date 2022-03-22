@@ -1,0 +1,13 @@
+$color: #333;
+
+@mixin pageStyle($size, $color, $name) {
+  font-size: $size;
+  color: $color;
+  &:after {
+    content: $name + "Nandan";
+  }
+}
+
+body {
+  font-style: italic;
+}

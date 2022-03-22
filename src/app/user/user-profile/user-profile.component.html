@@ -1,0 +1,72 @@
+<!-- Cards with media area -->
+<mat-card class="example-card">
+  <mat-card-content>
+    <form
+      class="login-form"
+      [formGroup]="profileInfo"
+      (ngSubmit)="updateProfile()"
+    >
+      <div fxLayout="column">
+        <p>
+          <mat-form-field class="item">
+            <input
+              matInput
+              type="text"
+              placeholder="Name"
+              formControlName="name"
+            />
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field class="item">
+            <input
+              matInput
+              type="text"
+              placeholder="Email"
+              formControlName="email"
+            />
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field class="item">
+            <input
+              matInput
+              type="text"
+              placeholder="Username"
+              formControlName="username"
+            />
+          </mat-form-field>
+          <mat-form-field class="item">
+            <textarea
+              matInput
+              type="text"
+              placeholder="About"
+              formControlName="about"
+            ></textarea>
+          </mat-form-field>
+        </p>
+        <mat-card-title-group>
+          <img mat-card-sm-image [src]="imageInfo ? imageInfo : null" />
+          <input
+            #csvInput
+            hidden="true"
+            type="file"
+            onclick="this.value=null"
+            (change)="csvInputChange($event)"
+          />
+          <button
+            mat-fab
+            color="primary"
+            aria-label="Example icon button with a delete icon"
+            (click)="csvInput.click()"
+            class="uploadButton"
+          >
+            <mat-icon>delete</mat-icon>
+          </button>
+        </mat-card-title-group>
+        <br />
+        <button mat-raised-button color="primary" type="submit">Update</button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

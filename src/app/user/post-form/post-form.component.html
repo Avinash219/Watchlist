@@ -1,0 +1,16 @@
+<mat-card>
+  <mat-card-title>Express your Idea</mat-card-title>
+  <mat-card-content [formGroup]="postForm">
+    <mat-form-field appearance="standard">
+      <mat-label>Write a post</mat-label>
+      <textarea
+        matInput
+        placeholder="Write a post"
+        formControlName="post"
+      ></textarea>
+    </mat-form-field>
+  </mat-card-content>
+  <mat-card-actions align="end">
+    <button mat-button (click)="submitPost()">Submit</button>
+  </mat-card-actions>
+</mat-card>
