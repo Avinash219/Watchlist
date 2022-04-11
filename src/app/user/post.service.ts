@@ -1,3 +1,4 @@
+import { PostRouteConstant } from './post-route.constant';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
@@ -12,11 +13,10 @@ export class PostService {
 
   getAllPost(body?, searchParam?, reset: string = 'new') {
     const headers = new HttpHeaders().set('reset', reset);
-    console.log('Nody', body);
     const { limit, currentPage } = body;
 
     return this._http.post(
-      `http://localhost:3000/api/post/getAllPost?limit=${limit}&currentPage=${currentPage}`,
+      `${PostRouteConstant.GET_POST_LIST}${limit}&currentPage=${currentPage}`,
       searchParam,
       {
         headers: headers,
@@ -25,24 +25,30 @@ export class PostService {
   }
 
   createPost(body) {
-    return this._http.post('http://localhost:3000/api/post/createPost', body);
+    return this._http.post(`${PostRouteConstant.CREATE_POST}`, body);
   }
 
   likePost(body) {
-    return this._http.put('http://localhost:3000/api/post/likes', body);
+    return this._http.put(`${PostRouteConstant.LIKE_POST}`, body);
   }
 
   dislikePost(body) {
-    return this._http.put('http://localhost:3000/api/post/dislikes', body);
+    return this._http.put(`${PostRouteConstant.DISLIKE_POST}`, body);
   }
 
   setPostList(post) {
-    console.log('Post Detail', post);
     this.postList$.next(post);
   }
 
   getPostList() {
-    console.log('Inside');
     return this.postList$.asObservable();
+  }
+
+  addComment(body) {
+    return this._http.put(`${PostRouteConstant.ADD_COMMENT}`, body);
+  }
+
+  getComment(id) {
+    return this._http.get(`${PostRouteConstant.GET_COMMENT}${id}`);
   }
 }

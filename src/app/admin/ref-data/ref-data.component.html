@@ -1,0 +1,39 @@
+<mat-accordion>
+  <mat-expansion-panel (opened)="refDataPanel = true" (closed)="refDataPanel = false">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Add Ref Data
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Ref Data</mat-label>
+      <input type="text" matInput [(ngModel)]="refData" placeholder="Ex. pat@example.com">
+    </mat-form-field>
+    <button mat-raised-button color="primary" (click)="addRefData()">Primary</button>
+  </mat-expansion-panel>
+  <mat-expansion-panel (opened)="refDataValuePanel = true" (closed)="refDataValuePanel = false">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Add Ref Data Value
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <mat-form-field appearance="fill">
+      <mat-label>Select an option</mat-label>
+      <mat-select disableRipple [(ngModel)]="selectedRefData">
+        <mat-option *ngFor="let refData of refDataValueMapper | keyvalue" [value]="refData.key">
+          {{refData.key}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Ref Data</mat-label>
+      <input type="text" matInput [(ngModel)]="newRefDataValue" placeholder="Ex. pat@example.com">
+    </mat-form-field>
+    <ng-container *ngIf="selectedRefData">
+      <mat-list role="list">
+        <mat-list-item *ngFor="let value of refDataValueMapper[selectedRefData]">{{value}}</mat-list-item>
+      </mat-list>
+    </ng-container>
+    <button mat-raised-button color="primary" (click)="addRefDataValue()">Add Value</button>
+  </mat-expansion-panel>
+</mat-accordion>

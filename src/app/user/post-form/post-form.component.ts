@@ -26,7 +26,6 @@ export class PostFormComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log(this._auth.userInfo);
     this.initForm();
   }
 
@@ -43,11 +42,9 @@ export class PostFormComponent implements OnInit {
       .createPost(this.postForm.getRawValue())
       .pipe(
         catchError((e) => {
-          console.log('Error');
           return EMPTY;
         }),
         concatMap((response) => {
-          console.log('Resonse', response);
           return this._postService.getAllPost();
         })
       )
@@ -55,7 +52,6 @@ export class PostFormComponent implements OnInit {
         (response) => {
           this._postService.setPostList(response);
           this.initForm();
-          console.log('Response', response);
         },
         (error) => {
           console.log(error);

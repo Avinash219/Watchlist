@@ -21,6 +21,7 @@ export class UserLandingComponent implements OnInit {
   limit: number = 10;
   currentPage: number = 0;
   @ViewChild('searchField') searchField: ElementRef;
+  showReplyBox: Array<boolean> = [];
 
   constructor(
     private _activatedRoute: ActivatedRoute,
@@ -30,6 +31,7 @@ export class UserLandingComponent implements OnInit {
 
   ngOnInit(): void {
     //this.postList$ = this._postService.postList$;
+    this.showReplyBox.fill(false);
     this.getAllPost();
     this.value = ['Avinash', 'Abhishek'];
     this._socketService.setupSocketConnection();
@@ -43,7 +45,6 @@ export class UserLandingComponent implements OnInit {
   }
 
   getAllPost() {
-    console.log(this.postList$);
     this._postService
       .getAllPost(
         { limit: this.limit, currentPage: this.currentPage },
@@ -82,7 +83,6 @@ export class UserLandingComponent implements OnInit {
   }
 
   onPaginate(event) {
-    console.log(event);
     this.currentPage = event.pageIndex;
     this.getAllPost();
   }
@@ -90,7 +90,6 @@ export class UserLandingComponent implements OnInit {
   onSearch() {
     this.limit = 10;
     this.currentPage = 0;
-    console.log(this.searchField.nativeElement.value);
     this.getAllPost();
   }
 
@@ -99,5 +98,9 @@ export class UserLandingComponent implements OnInit {
     this.currentPage = 0;
     this.searchField.nativeElement.value = null;
     this.getAllPost();
+  }
+
+  toggleReplyBox(index) {
+    this.showReplyBox[index] = !this.showReplyBox[index];
   }
 }

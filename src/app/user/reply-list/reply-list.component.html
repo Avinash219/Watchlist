@@ -1,0 +1,4 @@
+<mat-list role="list">
+  <mat-list-item role="listitem" *ngFor="let comment of (commentList$ | async)?.data?.comments">{{comment.text}}
+  </mat-list-item>
+</mat-list>

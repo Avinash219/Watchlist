@@ -37,9 +37,7 @@ export class UserProfileComponent extends Snackbar implements OnInit {
   ngOnInit(): void {
     this.initForm();
     this._activatedRoute.data.subscribe((response) => {
-      console.log(response);
       this.profileInfo.patchValue(response['userDetail']['user']);
-      console.log(this.profileInfo.get('imageDetails').value);
       this.imageInfo = this.profileInfo.get('imageDetails').value;
     });
   }

@@ -7,7 +7,6 @@ import * as _moment from 'moment';
 })
 export class DateTransformPipe implements PipeTransform {
   transform(value: unknown, ...args: unknown[]): unknown {
-    console.log('Fired');
     return _moment.utc(value, 'YYYYMMDD').fromNow();
   }
 }

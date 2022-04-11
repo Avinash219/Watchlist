@@ -1,3 +1,4 @@
+import { environment } from './../environments/environment';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Snackbar } from './shared/Snackbar';
 import { AuthenticateService } from './authenticate/authenticate.service';
@@ -29,17 +30,19 @@ export class AppHttpInterceptor extends Snackbar implements HttpInterceptor {
     request: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
+    request = request.clone({
+      url: `${environment.devUrl}${environment.baseUrl}${request.url}`,
+    });
     if (this._authService.loggedIn) {
-      console.log('Token', localStorage.getItem('token'));
       request = request.clone({
         setHeaders: {
           Authorization: localStorage.getItem('token'),
+          //  range: 'bytes =0',
         },
       });
     }
     this.requests.push(request);
     this._loadingService.setIsLoading(true);
-    console.log(this.cache);
     if (request.headers.get('reset') === 'new') {
       this.cache.delete(request['url']);
     }

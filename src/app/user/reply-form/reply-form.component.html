@@ -1,0 +1,9 @@
+<form class="example-form">
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Message</mat-label>
+    <input matInput #message maxlength="256" placeholder="Post your reply">
+    <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
+  </mat-form-field>
+  <button mat-flat-button color="primary" (click)="addComment()">Comment</button>
+  <button mat-flat-button>Cancel</button>
+</form>

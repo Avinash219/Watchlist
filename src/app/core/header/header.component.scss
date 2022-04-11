@@ -1,5 +1,8 @@
 .toolbarClass {
   display: flex;
+  .name{
+    flex: 1;
+  }
   .menuClass {
     margin-left: auto;
   }
@@ -7,4 +10,5 @@
     background: transparent;
     color: white;
   }
+
 }

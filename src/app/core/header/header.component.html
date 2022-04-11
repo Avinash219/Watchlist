@@ -1,15 +1,12 @@
 <div>
   <mat-toolbar color="primary">
     <mat-toolbar-row class="toolbarClass">
-      <span>Watchlist</span>
+      <span class="name">Watchlist</span>
       <div *ngIf="loggedInUserName" class="menuClass">
-        <a
-          mat-flat-button
-          target="_blank"
-          [matMenuTriggerFor]="menu"
-          class="linkClass"
-          >{{ loggedInUserName }}&#9660;</a
-        >
+        <button mat-button>Tips n Tricks</button>
+        <button mat-button>Q & Answers</button>
+        <a mat-flat-button target="_blank" [matMenuTriggerFor]="menu" class="linkClass">{{ loggedInUserName
+          }}&#9660;</a>
         <mat-menu #menu="matMenu">
           <button mat-menu-item (click)="editProfile()">Edit Profile</button>
           <button mat-menu-item (click)="logout()">Logout</button>

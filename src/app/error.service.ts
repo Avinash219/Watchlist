@@ -13,6 +13,7 @@ export class ErrorService extends Snackbar implements ErrorHandler {
   }
 
   handleError(error: any): void {
+    console.log(error);
     const router = this.injector.get(Router);
     if (Error instanceof HttpErrorResponse) {
       console.log(error.status);

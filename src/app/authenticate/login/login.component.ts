@@ -37,7 +37,6 @@ export class LoginComponent implements OnInit {
   }
 
   loginUser() {
-    console.log('Submit fired');
     this._auth.login(this.loginForm.getRawValue()).subscribe((response) => {
       if (response['user']) {
         this._auth.username = response['user']['username'];

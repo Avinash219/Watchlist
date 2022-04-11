@@ -2,6 +2,7 @@ import { ActivatedRoute } from '@angular/router';
 import { AuthenticateService } from './../authenticate/authenticate.service';
 import { Component, OnInit } from '@angular/core';
 import jwt_decode from 'jwt-decode';
+import { FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-reset-password',
@@ -9,8 +10,11 @@ import jwt_decode from 'jwt-decode';
   styleUrls: ['./reset-password.component.scss'],
 })
 export class ResetPasswordComponent implements OnInit {
-  email: any;
-  password: any;
+  emailFormControl = new FormControl('', [
+    Validators.required,
+    Validators.email,
+  ]);
+  passwordFormControl = new FormControl('', [Validators.required]);
   token: any;
   decodedToken: any;
   constructor(
@@ -27,24 +31,26 @@ export class ResetPasswordComponent implements OnInit {
   generatePasswordLink() {
     if (this.token) {
       let obj = {
-        email: this.email,
-        password: this.password,
+        email: this.emailFormControl.value,
+        password: this.passwordFormControl.value,
       };
       this._auth.resetPassword(obj).subscribe((response) => {
         console.log(response);
       });
     } else {
-      this._auth.generatePasswordLink(this.email).subscribe((response) => {
-        console.log(response);
-      });
+      this._auth
+        .generatePasswordLink(this.emailFormControl.value)
+        .subscribe((response) => {
+          console.log(response);
+        });
     }
   }
 
   resetPassword() {
     let obj = {
-      email: this.email,
+      email: this.emailFormControl.value,
       token: this.token,
-      password: this.password,
+      password: this.passwordFormControl.value,
     };
     this._auth.resetPassword(obj).subscribe((response) => {
       console.log(response);

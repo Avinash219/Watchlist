@@ -17,7 +17,9 @@ export class Snackbar {
 
   errorToast(error) {
     this.snackBar.open(
-      error.message ? error.message.toString() : error['error']['error'],
+      error.name === 'HttpErrorResponse'
+        ? error['error']['error']
+        : error.message.toString(),
       '',
       {
         horizontalPosition: 'right',

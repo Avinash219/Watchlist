@@ -1,3 +1,4 @@
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { ErrorService } from './error.service';
 import { MatCardModule } from '@angular/material/card';
 import { AppHttpInterceptor } from './app-http-interceptor';
@@ -6,6 +7,8 @@ import { CoreModule } from './core/core.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,7 +20,7 @@ import { MovieDetailModule } from 'dist/movie-detail';
 import { MatSelectModule } from '@angular/material/select';
 import { UserConfirmComponent } from './user-confirm/user-confirm.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,11 +35,15 @@ import { FormsModule } from '@angular/forms';
     BrowserAnimationsModule,
     CoreModule,
     FormsModule,
+    ReactiveFormsModule,
     AuthenticateModule,
     MatSnackBarModule,
     MatCardModule,
+    MatButtonModule,
     MovieDetailModule,
     MatSelectModule,
+    MatInputModule,
+    MatFormFieldModule,
   ],
   providers: [
     {

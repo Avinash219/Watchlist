@@ -1,3 +1,4 @@
+import { UserRoutingConstant } from './user-route.constant';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
@@ -8,13 +9,10 @@ export class UserService {
   constructor(private _http: HttpClient) {}
 
   getUserDetail(username) {
-    return this._http.get(`http://localhost:3000/api/profile/user/${username}`);
+    return this._http.get(`${UserRoutingConstant.GET_USER_INFO}${username}`);
   }
 
   updateUserDetail(formData) {
-    return this._http.post(
-      `http://localhost:3000/api/profile/user/update`,
-      formData
-    );
+    return this._http.post(`${UserRoutingConstant.UPDATE_USER_INFO}`, formData);
   }
 }

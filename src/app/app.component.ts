@@ -16,10 +16,11 @@ export class AppComponent {
   validateUser() {
     if (localStorage.getItem('token')) {
       let decodedInfo: string = jwt_decode(localStorage.getItem('token'));
-      console.log(decodedInfo);
       this._auth.loggedIn = true;
       this._auth.userInfo = localStorage.getItem('token');
+      this._auth.setLoggedInUser(decodedInfo);
       this._router.navigate(['user', localStorage.getItem('username')]);
+      //this._router.navigate(['admin']);
     } else {
       localStorage.removeItem('userInfo');
       this._auth.setLoggedInUser(null);
@@ -31,8 +32,6 @@ export class AppComponent {
   verifyToken() {
     const currentTime = Math.round(new Date().getTime() / 1000);
     let decodedInfo: string = jwt_decode(localStorage.getItem('token'));
-    console.log('Current Time', currentTime);
-    console.log('Expires in', decodedInfo['exp']);
     if (decodedInfo['exp'] < currentTime) {
       return true;
     } else {

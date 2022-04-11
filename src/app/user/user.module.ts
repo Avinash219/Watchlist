@@ -13,12 +13,17 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { UserLandingComponent } from './user-landing/user-landing.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PostFormComponent } from './post-form/post-form.component';
 import { UserMenuComponent } from './user-menu/user-menu.component';
 import { IdeaComponent } from './idea/idea.component';
 import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
 import { DateTransformPipe } from './date-transform.pipe';
+import { TipsComponent } from './tips/tips.component';
+import { QnaComponent } from './qna/qna.component';
+import { ReplySectionComponent } from './reply-section/reply-section.component';
+import { ReplyFormComponent } from './reply-form/reply-form.component';
+import { ReplyListComponent } from './reply-list/reply-list.component';
 
 @NgModule({
   declarations: [
@@ -29,10 +34,16 @@ import { DateTransformPipe } from './date-transform.pipe';
     IdeaComponent,
     UserDashboardComponent,
     DateTransformPipe,
+    TipsComponent,
+    QnaComponent,
+    ReplySectionComponent,
+    ReplyFormComponent,
+    ReplyListComponent,
   ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    FormsModule,
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,

@@ -18,19 +18,23 @@
       </mat-paginator>
     </div>
     <div>
-      <mat-card *ngFor="let post of postList; trackBy: trackByPostId">
+      <mat-card *ngFor="let post of postList; trackBy: trackByPostId;let i = index;">
         <mat-card-title>{{ post.createdAt | dateTransform }}</mat-card-title>
         <mat-card-subtitle>Added By {{ post.author.name }}</mat-card-subtitle>
         <mat-card-content>
           {{ post.post }}
         </mat-card-content>
         <mat-card-actions>
-          <button mat-icon-button (click)="likePost('like', post._id, post.author._id)">
+          <!--  <button mat-icon-button (click)="likePost('like', post._id, post.author._id)">
             <mat-icon>thumb_up</mat-icon>{{post.likes.length}}
           </button>
           <button mat-icon-button (click)="likePost('dislike', post._id, post.author._id)">
             <mat-icon>thumb_down</mat-icon>{{post.dislikes.length}}
-          </button>
+          </button> -->
+          <button mat-button (click)="toggleReplyBox(i)">Reply</button>
+          <div *ngIf="showReplyBox[i]">
+            <app-reply-section [postId]="post._id"></app-reply-section>
+          </div>
         </mat-card-actions>
       </mat-card>
     </div>

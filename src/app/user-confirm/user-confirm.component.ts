@@ -1,6 +1,7 @@
 import { AuthenticateService } from './../authenticate/authenticate.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+
 import jwt_decode from 'jwt-decode';
 
 @Component({
